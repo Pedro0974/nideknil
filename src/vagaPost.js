@@ -1,15 +1,18 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
 import { VAGAS } from '../data/mock-data';
 
 const VagaItem = ({ vaga }) => {
+  const randomImageId = Math.floor(Math.random() * 1000); // Gera um ID aleatório para a imagem
+  const imageUrl = `https://picsum.photos/200/200?random=${randomImageId}`; // URL da imagem aleatória
+
   return (
     <View style={styles.vagaItem}>
-      <Text style={styles.title}>{vaga.title}</Text>
-      <Text style={styles.company}>{vaga.company}</Text>
-      <Text style={styles.location}>{vaga.location}</Text>
-      <Text style={styles.description}>{vaga.description}</Text>
-      <Text style={styles.salary}>{vaga.salary}</Text>
+      <Image source={{ uri: imageUrl }} style={styles.image} />
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{vaga.title}</Text>
+        <Text style={styles.company}>{vaga.company}</Text>
+      </View>
     </View>
   );
 };
@@ -37,6 +40,16 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     borderRadius: 5,
+    flexDirection: 'row', // Para exibir a imagem e o texto na mesma linha
+  },
+  image: {
+    width: 100,
+    height: 100,
+    borderRadius: 5,
+    marginRight: 10,
+  },
+  textContainer: {
+    flex: 1, // Para ocupar todo o espaço disponível ao lado da imagem
   },
   title: {
     fontSize: 18,
@@ -45,18 +58,6 @@ const styles = StyleSheet.create({
   company: {
     fontSize: 16,
     color: 'gray',
-  },
-  location: {
-    fontSize: 14,
-    fontStyle: 'italic',
-    color: 'gray',
-  },
-  description: {
-    marginTop: 5,
-  },
-  salary: {
-    marginTop: 5,
-    fontWeight: 'bold',
   },
 });
 
