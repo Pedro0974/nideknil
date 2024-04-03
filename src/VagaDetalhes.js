@@ -9,7 +9,7 @@ const VagaDetalhes = ({ route }) => {
 
   // Função para navegar para a tela de detalhes da empresa
   const navigateToEmpresaSobre = () => {
-    navigation.navigate('Sobre a empresa', { empresa: vaga.company, localizacao: vaga.location });
+    navigation.navigate('Sobre a empresa', { empresa: vaga.company, localizacao: vaga.location, ein: vaga.ein });
   };
 
   const datePosted = new Date(vaga.datePosted)
@@ -18,6 +18,7 @@ const VagaDetalhes = ({ route }) => {
   return (
     <View style={styles.container}>
       {/* Título da vaga */}
+      <Text>Ein</Text>
       <Text style={styles.title}>{vaga.title}</Text>
       <View style={styles.infoContainer}>
         {/* Informações sobre a vaga */}

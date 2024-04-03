@@ -5,7 +5,7 @@ import { Ionicons } from "react-native-vector-icons";
 
 const EmpresaSobre = ({ route }) => {
   // Extrai os parâmetros da rota
-  const { empresa, localizacao } = route.params;
+  const { empresa, localizacao, ein } = route.params;
 
   // Array com as perguntas e respostas sobre a empresa
   const descricaoEmpresa = [
@@ -23,6 +23,10 @@ const EmpresaSobre = ({ route }) => {
       <View style={styles.infoContainer}>
         <Ionicons name="location-outline" size={18} color="#666" />
         <Text style={styles.info}>Localização: {localizacao}</Text>
+      </View>
+      <View style={styles.infoContainer}>
+        <Ionicons name="business-outline" size={18} color="#666" />
+        <Text style={styles.info}>EIN: {ein}</Text>
       </View>
       
       {/*background adicionado nas perguntas e respostas sobre as empresas na view para fazer um
