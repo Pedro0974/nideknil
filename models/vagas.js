@@ -13,7 +13,8 @@ class Vaga {
             requirements, 
             salary, 
             datePosted, 
-            deadline
+            deadline,
+            ein
         ) {
 
         this.id = id;
@@ -25,7 +26,7 @@ class Vaga {
         this.salary = salary;
         this.datePosted = datePosted;
         this.deadline = deadline
-
+        this.ein = ein
     }
 }
 
