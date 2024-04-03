@@ -11,7 +11,7 @@ const VagaItem = ({ vaga }) => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('VagaDetalhes', { vaga })}>
+    <TouchableOpacity onPress={() => navigation.navigate('Detalhes da vaga', { vaga })}>
       <View style={styles.vagaItem}>
         <Image source={{ uri: imageUrl }} style={styles.image} />
         <View style={styles.textContainer}>
