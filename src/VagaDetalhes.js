@@ -12,6 +12,9 @@ const VagaDetalhes = ({ route }) => {
     navigation.navigate('Sobre a empresa', { empresa: vaga.company, localizacao: vaga.location });
   };
 
+  const datePosted = new Date(vaga.datePosted)
+  const deadline = new Date(vaga.deadline)
+
   return (
     <View style={styles.container}>
       {/* Título da vaga */}
@@ -24,7 +27,7 @@ const VagaDetalhes = ({ route }) => {
         </View>
         <View style={styles.infoRow}>
           <Ionicons name="calendar" size={18} color="#666" />
-          <Text style={styles.infoText}>Período de Candidatura: {vaga.datePosted} - {vaga.deadline}</Text>
+          <Text style={styles.infoText}>Período de Candidatura: {datePosted.toLocaleDateString('pt-BR')} á {deadline.toLocaleDateString('pt-BR')}</Text>
         </View>
         <View style={styles.infoRow}>
           <Ionicons name="cash" size={18} color="#666" />
