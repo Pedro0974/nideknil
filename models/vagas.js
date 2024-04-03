@@ -1,5 +1,5 @@
 // Esta é a definição da classe Vaga, que representa uma vaga de emprego.
-// Cada objeto Vaga possui propriedades como título, empresa, localização, descrição da vaga, requisitos, salário e datas de início e término.
+// Cada objeto Vaga possui as propriedades título, empresa, localização, descrição da vaga, requisitos, salário e datas de início e término.
 // O construtor da classe inicializa essas propriedades com os valores fornecidos ao criar uma nova instância de Vaga.
 // Esta classe é exportada para ser utilizada em outros arquivos que necessitam representar informações sobre vagas de emprego.
 

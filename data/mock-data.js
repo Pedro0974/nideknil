@@ -1,7 +1,7 @@
 import Vaga from "../models/vagas";
 
 // Este arquivo contém a definição das vagas de emprego disponíveis, representadas como objetos da classe Vaga.
-// Cada objeto Vaga contém informações como título, empresa, localização, descrição da vaga, requisitos, salário e datas de início e término.
+// Cada objeto Vaga contém as informações: título, empresa, localização, descrição da vaga, requisitos, salário e datas de início e término.
 // As vagas estão armazenadas no array VAGAS, onde cada elemento é uma instância da classe Vaga.
 // Essas informações são utilizadas na aplicação para exibir uma lista de vagas de emprego.
 
