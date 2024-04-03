@@ -1,19 +1,25 @@
+// VagasList.js
+
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, Image } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { VAGAS } from '../data/mock-data';
 
 const VagaItem = ({ vaga }) => {
   const randomImageId = Math.floor(Math.random() * 1000); // Gera um ID aleatório para a imagem
   const imageUrl = `https://picsum.photos/200/200?random=${randomImageId}`; // URL da imagem aleatória
+  const navigation = useNavigation();
 
   return (
-    <View style={styles.vagaItem}>
-      <Image source={{ uri: imageUrl }} style={styles.image} />
-      <View style={styles.textContainer}>
-        <Text style={styles.title}>{vaga.title}</Text>
-        <Text style={styles.company}>{vaga.company}</Text>
+    <TouchableOpacity onPress={() => navigation.navigate('VagaDetalhes', { vaga })}>
+      <View style={styles.vagaItem}>
+        <Image source={{ uri: imageUrl }} style={styles.image} />
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>{vaga.title}</Text>
+          <Text style={styles.company}>{vaga.company}</Text>
+        </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
