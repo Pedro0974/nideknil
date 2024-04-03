@@ -1,9 +1,9 @@
-// VagasList.js
-
-import React from 'react';
-import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { VAGAS } from '../data/mock-data';
+
+const ITEMS_PER_PAGE = 5;
 
 const VagaItem = ({ vaga }) => {
   const randomImageId = Math.floor(Math.random() * 1000); // Gera um ID aleatório para a imagem
@@ -24,12 +24,37 @@ const VagaItem = ({ vaga }) => {
 };
 
 const VagasList = () => {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState(VAGAS.slice(0, ITEMS_PER_PAGE));
+  const [page, setPage] = useState(1);
+
+  const handleLoadMore = () => {
+    if (!loading) {
+      setLoading(true);
+      setTimeout(() => {
+        const newData = VAGAS.slice(page * ITEMS_PER_PAGE, (page + 1) * ITEMS_PER_PAGE);
+        setData(prevData => [...prevData, ...newData]);
+        setPage(prevPage => prevPage + 1);
+        setLoading(false);
+      }, 1000);
+    }
+  };
+
+  const renderFooter = () => {
+    return loading ? (
+      <ActivityIndicator size="large" color="#0000ff" />
+    ) : null;
+  };
+
   return (
     <View style={styles.container}>
       <FlatList
-        data={VAGAS}
+        data={data}
         renderItem={({ item }) => <VagaItem vaga={item} />}
         keyExtractor={vaga => vaga.id.toString()}
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0.1}
+        ListFooterComponent={renderFooter}
       />
     </View>
   );
@@ -46,7 +71,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     borderRadius: 5,
-    flexDirection: 'row', // Para exibir a imagem e o texto na mesma linha
+    flexDirection: 'row',
   },
   image: {
     width: 100,
@@ -55,7 +80,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   textContainer: {
-    flex: 1, // Para ocupar todo o espaço disponível ao lado da imagem
+    flex: 1,
   },
   title: {
     fontSize: 18,
