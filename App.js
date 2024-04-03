@@ -1,21 +1,22 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import VagasList from './src/vagaPost';
+// App.js
 
-export default function App() {
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import VagasList from './src/vagaPost'; // Seu componente de lista de vagas
+import VagaDetalhes from './src/VagaDetalhes'; // Seu componente de detalhes da vaga
+
+const Stack = createStackNavigator();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-     <VagasList/>
-      
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="VagasList">
+        <Stack.Screen name="VagasList" component={VagasList} />
+        <Stack.Screen name="VagaDetalhes" component={VagaDetalhes} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
