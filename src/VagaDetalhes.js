@@ -18,7 +18,6 @@ const VagaDetalhes = ({ route }) => {
   return (
     <View style={styles.container}>
       {/* Título da vaga */}
-      <Text>Ein</Text>
       <Text style={styles.title}>{vaga.title}</Text>
       <View style={styles.infoContainer}>
         {/* Informações sobre a vaga */}
