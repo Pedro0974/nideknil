@@ -3,14 +3,19 @@ import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, ActivityIndi
 import { useNavigation } from '@react-navigation/native';
 import { VAGAS } from '../data/mock-data';
 
+// Define o número de itens por página
 const ITEMS_PER_PAGE = 5;
 
+// Componente que renderiza um item de vaga
 const VagaItem = ({ vaga }) => {
-  const randomImageId = Math.floor(Math.random() * 1000); // Gera um ID aleatório para a imagem
-  const imageUrl = `https://picsum.photos/200/200?random=${randomImageId}`; // URL da imagem aleatória
+  // Gera um ID aleatório para a imagem
+  const randomImageId = Math.floor(Math.random() * 1000);
+  // URL da imagem aleatória
+  const imageUrl = `https://picsum.photos/200/200?random=${randomImageId}`;
   const navigation = useNavigation();
 
   return (
+    // TouchableOpacity torna o componente acionável
     <TouchableOpacity onPress={() => navigation.navigate('Detalhes da vaga', { vaga })}>
       <View style={styles.vagaItem}>
         <Image source={{ uri: imageUrl }} style={styles.image} />
@@ -23,11 +28,13 @@ const VagaItem = ({ vaga }) => {
   );
 };
 
+// Componente principal que lista as vagas
 const VagasList = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(VAGAS.slice(0, ITEMS_PER_PAGE));
   const [page, setPage] = useState(1);
 
+  // Função para carregar mais itens ao alcançar o fim da lista
   const handleLoadMore = () => {
     if (!loading) {
       setLoading(true);
@@ -40,6 +47,7 @@ const VagasList = () => {
     }
   };
 
+  // Renderiza um indicador de carregamento no final da lista
   const renderFooter = () => {
     return loading ? (
       <ActivityIndicator size="large" color="#0000ff" />
@@ -60,6 +68,7 @@ const VagasList = () => {
   );
 };
 
+// Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -72,6 +81,17 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 5,
     flexDirection: 'row',
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 1,
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 5,
   },
   image: {
     width: 100,
